@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/CityGuesser/static/css/main.4c14d845.css",
-    "main.js": "/CityGuesser/static/js/main.0416f90d.js",
+    "main.js": "/CityGuesser/static/js/main.8c643bab.js",
     "static/js/787.c4e7f8f9.chunk.js": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js",
     "static/media/CityGuesser.svg": "/CityGuesser/static/media/CityGuesser.61df25aca346180ee3e69769d893c434.svg",
     "index.html": "/CityGuesser/index.html",
     "main.4c14d845.css.map": "/CityGuesser/static/css/main.4c14d845.css.map",
-    "main.0416f90d.js.map": "/CityGuesser/static/js/main.0416f90d.js.map",
+    "main.8c643bab.js.map": "/CityGuesser/static/js/main.8c643bab.js.map",
     "787.c4e7f8f9.chunk.js.map": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4c14d845.css",
-    "static/js/main.0416f90d.js"
+    "static/js/main.8c643bab.js"
   ]
 }
