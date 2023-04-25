@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/CityGuesser/static/css/main.ae6466b4.css",
-    "main.js": "/CityGuesser/static/js/main.9221064b.js",
+    "main.css": "/CityGuesser/static/css/main.d79ec35c.css",
+    "main.js": "/CityGuesser/static/js/main.dac802ae.js",
     "static/js/787.c4e7f8f9.chunk.js": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js",
     "static/media/CityGuesser.svg": "/CityGuesser/static/media/CityGuesser.61df25aca346180ee3e69769d893c434.svg",
+    "static/media/LoadingImg.svg": "/CityGuesser/static/media/LoadingImg.d519a47f9f4ab6a9dd0526cf348b1675.svg",
     "index.html": "/CityGuesser/index.html",
-    "main.ae6466b4.css.map": "/CityGuesser/static/css/main.ae6466b4.css.map",
-    "main.9221064b.js.map": "/CityGuesser/static/js/main.9221064b.js.map",
+    "main.d79ec35c.css.map": "/CityGuesser/static/css/main.d79ec35c.css.map",
+    "main.dac802ae.js.map": "/CityGuesser/static/js/main.dac802ae.js.map",
     "787.c4e7f8f9.chunk.js.map": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae6466b4.css",
-    "static/js/main.9221064b.js"
+    "static/css/main.d79ec35c.css",
+    "static/js/main.dac802ae.js"
   ]
 }
