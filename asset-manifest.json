@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/CityGuesser/static/css/main.d79ec35c.css",
-    "main.js": "/CityGuesser/static/js/main.dac802ae.js",
+    "main.js": "/CityGuesser/static/js/main.fa6c11e5.js",
     "static/js/787.c4e7f8f9.chunk.js": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js",
     "static/media/CityGuesser.svg": "/CityGuesser/static/media/CityGuesser.61df25aca346180ee3e69769d893c434.svg",
     "static/media/LoadingImg.svg": "/CityGuesser/static/media/LoadingImg.d519a47f9f4ab6a9dd0526cf348b1675.svg",
     "index.html": "/CityGuesser/index.html",
     "main.d79ec35c.css.map": "/CityGuesser/static/css/main.d79ec35c.css.map",
-    "main.dac802ae.js.map": "/CityGuesser/static/js/main.dac802ae.js.map",
+    "main.fa6c11e5.js.map": "/CityGuesser/static/js/main.fa6c11e5.js.map",
     "787.c4e7f8f9.chunk.js.map": "/CityGuesser/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d79ec35c.css",
-    "static/js/main.dac802ae.js"
+    "static/js/main.fa6c11e5.js"
   ]
 }
