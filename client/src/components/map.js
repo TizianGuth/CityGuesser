@@ -23,6 +23,8 @@ class Map extends Component {
         }
         this.createMap = this.createMap.bind(this);
 
+
+
         exp = this;
     }
     componentDidMount() {
@@ -30,7 +32,7 @@ class Map extends Component {
     }
 
     createMap() {
-        map = L.map(this.state.id).setView([this.state.coords[0], this.state.coords[1]], this.state.zoom);
+        map = L.map(this.state.id, { attributionControl: false }).setView([this.state.coords[0], this.state.coords[1]], this.state.zoom);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         }).addTo(map);
@@ -41,7 +43,11 @@ class Map extends Component {
     clickHandler = (e) => {
         if (this.props.id == 'select-bounds') {
             this.onClickSelectBounds(e);
-        } else {
+        }
+        if (this.props.id == 'select') {
+            this.onClickDefault(e);
+        }
+        else {
             this.onClickDefault(e);
         }
 
@@ -50,14 +56,14 @@ class Map extends Component {
 
     // OnClick default
     onClickDefault(e) {
-        this.removeAllMarkers(map);
+        removeAllMarkers(map);
         markers.push(L.marker([e.latlng.lat, e.latlng.lng]).addTo(map));
     }
 
     // OnClick select bounds
     onClickSelectBounds(e) {
         if (markers.length >= 2)
-            this.removeAllMarkers(map);
+            removeAllMarkers(map);
 
         markers.push(L.marker([e.latlng.lat, e.latlng.lng]).addTo(map));
 
@@ -65,7 +71,7 @@ class Map extends Component {
             const coords = [[markers[0]._latlng.lat, markers[0]._latlng.lng], [markers[0]._latlng.lat, markers[1]._latlng.lng],
             [markers[1]._latlng.lat, markers[1]._latlng.lng], [markers[1]._latlng.lat, markers[0]._latlng.lng], [markers[0]._latlng.lat, markers[0]._latlng.lng]];
 
-            this.state.coords = this.getCenter(markers[0]._latlng.lat, markers[0]._latlng.lng, markers[1]._latlng.lat, markers[1]._latlng.lng);
+            this.state.coords = getCenter(markers[0]._latlng.lat, markers[0]._latlng.lng, markers[1]._latlng.lat, markers[1]._latlng.lng);
             //marker.push(L.marker(centerCoords).addTo(map));
             bound_line = L.polyline(coords).addTo(map);
             this.state.bounds.push([markers[0]._latlng.lat, markers[0]._latlng.lng], [markers[1]._latlng.lat, markers[1]._latlng.lng]);
@@ -84,6 +90,10 @@ class Map extends Component {
             </div>
         );
     }
+}
+
+export function updateHeight() {
+    map.invalidateSize();
 }
 
 function getCenter(minX, minY, maxX, maxY) {
@@ -115,4 +125,23 @@ export function focusOnCreatedMarker(coords) {
     map.setView([coords[0], coords[1]], map.getZoom());
 }
 
+export function getDistanceFromMarker(lat, long, index) {
+    console.log(markers[index]);
+    return getDistance(lat, long, markers[index]._latlng.lat, markers[index]._latlng.lng);
+}
+
+//
+// https://stackoverflow.com/questions/639695/how-to-convert-latitude-or-longitude-to-meters
+//
+function getDistance(lat1, lon1, lat2, lon2) {
+    var R = 6378.137; // Radius of earth in KM
+    var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+    var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d * 1000; // meters
+}
 export default Map;

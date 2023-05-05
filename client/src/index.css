@@ -6,6 +6,12 @@ html, body {
 }
 #root {
   height: 100vh;
+  width: 100vw;
+}
+
+.leaflet-container {
+  width: 100wh; 
+  height: 100vh;
 }
 
 body {
@@ -24,14 +30,14 @@ code {
 }
 
 .background {
-  background: #151B25;
+  background: #0E0E0E;
   text-align: center;
   height: 100%;
 }
 
 .main{
   height: 100%;
-  background-color: #19212E;
+  background-color: #0E0E0E;
   margin: 0 1%;
   overflow: auto; 
 }

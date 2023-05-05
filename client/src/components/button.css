@@ -1,19 +1,21 @@
 .button button {
-    color: #E0E1DD;
-    background-color: #212D40;
+    color: #3E2600;
+    background-color: #FFA400;
     border: unset;
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
     cursor: pointer;
     display: inline-flex;
     height: 3rem;
     justify-content: center;
     min-width: 3.5rem;
-    width: 22.5rem;
+    width: auto;
+    min-width: 200px;
     box-sizing: border-box;
     padding: 1px 6px;
-    font-size: 2rem;
-    font-family: "M PLUS Rounded 1c";
-    box-shadow: 3px 6px #03101fb7;
+    font-size: 150%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    white-space: normal;
 
 }
 .button {
