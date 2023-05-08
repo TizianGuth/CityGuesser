@@ -13,6 +13,15 @@
     font-size:  calc(1vw + 0.8vh);
 }
 
+.main h3 {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #912e2e;
+    font-size:  calc(1vw + 0.8vh);
+    margin-bottom: 1%;
+}
+
 .main .menue {
     height: 65%;
     margin: 1vh 10vw;

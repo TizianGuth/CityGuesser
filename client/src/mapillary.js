@@ -1,9 +1,9 @@
 const again = 50;
 
 const access_token = "MLY|6166005043478579|dedb03fb4450e41adc205d3494d475d9";
-const link_limit = 2;
+const link_limit = 10;
 const image_minimum = 2;
-const margin = 0.0045 * 0.1;
+const margin = 0.0045 * 0.1; // NOT ACCURATE !!
 
 let min_lat = 49.878577;
 let min_lon = 10.847871;
@@ -33,8 +33,6 @@ async function getImageIDsMin(minimum) {
     let IDs;
     while (IDs == undefined || IDs.length < minimum) {
         IDs = await getImageIDs();
-
-        console.log(IDs);
     }
     return IDs;
 }
@@ -63,17 +61,21 @@ export async function preloadImages(_amount) {
         let ids = await getImageIDsMin(image_minimum);
         imgs.push(await getImages(ids, image_minimum));
     }
-    console.log("loaded!");
-    //  console.log(imgs);
     return imgs;
 }
 
 async function getImages(_ids, _amount) {
     let result = [];
-    for (let i = 0; i < _amount; i++) {
-        // console.log(_ids);
-        result.push(await getImageById(_ids[i]["id"]));
+    let a = _amount;
+    for (let i = 0; i < a; i++) {
+        let r = await getImageById(_ids[i]["id"]);
+        if (r[1] == undefined) {
+            a++;
+        } else {
+            result.push(r);
+        }
     }
+    //console.log(result);
     return result;
 }
 

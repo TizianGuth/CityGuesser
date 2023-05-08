@@ -21,7 +21,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 2vh 2vh 0 0;
 }
 
 .image-holder-result {
@@ -34,8 +33,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 2vh 2vh 0 0;
     transition: height 1s;
+}
+
+.play .play-text  {
+    display: flex;
+}
+
+.play .play-text h2 {
+    margin: 0 2%;
 }
 
 .main .play img {
@@ -46,7 +52,7 @@
 }
 
 .main .play .map {
-    height: 75%;
+    height: 100%;
 }
 
 .main .play .result {

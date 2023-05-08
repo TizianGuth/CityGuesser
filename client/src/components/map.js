@@ -31,6 +31,10 @@ class Map extends Component {
         this.createMap();
     }
 
+    updateMap(lat, lon) {
+        map = map.setView([lat, lon], this.state.zoom);
+    }
+
     createMap() {
         map = L.map(this.state.id, { attributionControl: false }).setView([this.state.coords[0], this.state.coords[1]], this.state.zoom);
 
@@ -44,7 +48,7 @@ class Map extends Component {
         if (this.props.id == 'select-bounds') {
             this.onClickSelectBounds(e);
         }
-        if (this.props.id == 'select') {
+        else if (this.props.id == 'select') {
             this.onClickDefault(e);
         }
         else {
@@ -111,6 +115,7 @@ function removeAllMarkers() {
 export function getImageCoords(index) {
     if (index < 0 || imgs == undefined) { return; }
 
+    //console.log(imgs[index]);
 
     let coords1 = imgs[index][0][1]["coordinates"];
     let coords2 = imgs[index][1][1]["coordinates"];
@@ -126,10 +131,11 @@ export function focusOnCreatedMarker(coords) {
 }
 
 export function getDistanceFromMarker(lat, long, index) {
-    console.log(markers[index]);
     return getDistance(lat, long, markers[index]._latlng.lat, markers[index]._latlng.lng);
 }
-
+export function getMarkerSelectValid() {
+    return markers.length == 1;
+}
 //
 // https://stackoverflow.com/questions/639695/how-to-convert-latitude-or-longitude-to-meters
 //
@@ -144,4 +150,5 @@ function getDistance(lat1, lon1, lat2, lon2) {
     var d = R * c;
     return d * 1000; // meters
 }
+
 export default Map;

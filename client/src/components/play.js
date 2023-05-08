@@ -3,7 +3,7 @@ import "./play.css";
 import React, { useEffect, useState, useRef } from 'react';
 import { useLocation } from "react-router-dom";
 
-import Map, { map, getImageCoords, focusOnCreatedMarker, updateHeight, getDistanceFromMarker } from "./map";
+import Map, { map, getImageCoords, focusOnCreatedMarker, updateHeight, getDistanceFromMarker, getMarkerSelectValid } from "./map";
 import Button from "./button";
 import Mapillary, { imgs, preloadImages } from "./../mapillary";
 import Navbar from "./navbar";
@@ -14,23 +14,22 @@ let roundIndex = -1;
 const inacuracy = 50;
 const maxPoints = 5000;
 
+let c = 0;
 const Play = () => {
+
+    preloadImages(1);
 
     // Seperate cause array too slow
     const [img1, setImg1] = useState();
     const [img2, setImg2] = useState();
 
     const [result, setResult] = useState(false);
-    const [distance, setDistance] = useState(0);
+    const [distance, setDistance] = useState(-1);
     const [score, setScore] = useState(0);
 
+    refreshImages();
 
-    preloadImages(2).then(() => {
-        refreshImages();
-    });
     const props = useLocation().state;
-
-    console.log(getImageCoords(roundIndex));
 
     if (props == null || props.coords == null)
         window.location.href = "/";
@@ -40,8 +39,15 @@ const Play = () => {
             <div className="main">
                 <Navbar />
                 <div className="play">
-                    <div id="play-text ">
-                        <h2>Distance: {distance < inacuracy ? "<" + inacuracy : distance} m</h2>
+                    <div className="play-text ">
+                        {
+                            distance > 10000 ?
+                                <h2>Distance: {Math.round(distance / 1000)}km</h2> :
+                                distance > 0 ?
+                                    <h2>Distance: {distance < inacuracy ? "<" + inacuracy : distance}m</h2> :
+                                    <h2>Distance: {"-"}</h2>
+
+                        }
                         <h2>Total score: {score} </h2>
                     </div>
                     <div className={result ? "image-holder-result" : "image-holder"}>
@@ -64,20 +70,18 @@ const Play = () => {
             return;
         }
 
+        if (!getMarkerSelectValid() || imgs[roundIndex + 1] == undefined) return;
+
         init = false;
         setResult(true);
         const c = getImageCoords(roundIndex)
         const d = Math.round(getDistanceFromMarker(c[0], c[1], 0));
         setDistance(d);
         setScore(score + Math.round(getScore(d)));
-        console.log("Score: " + Math.round(getScore(d)));
         resizeMap(1000).then(() => {
             refreshImages();
             focusOnCreatedMarker(getImageCoords(roundIndex - 1));
         });
-
-        console.log(c);
-
     }
 
     function getScore(distance) {
@@ -108,7 +112,6 @@ const Play = () => {
         roundIndex++;
         setImg1([imgs[roundIndex][0][0]]);
         setImg2([imgs[roundIndex][1][0]]);
-        // console.log(imgs);
         init = true;
     }
 };
